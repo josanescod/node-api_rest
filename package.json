@@ -1,0 +1,19 @@
+{
+  "name": "todotool",
+  "version": "1.0.0",
+  "description": "to-do list ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josanescod/node-todotool.git"
+  },
+  "author": "josanescod@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josanescod/node-todotool/issues"
+  },
+  "homepage": "https://github.com/josanescod/node-todotool#readme"
+}
