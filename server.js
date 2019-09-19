@@ -3,9 +3,11 @@
 const express = require ('express')
 const bodyParser = require ('body-parser')
 /*const sqlite3 = require ('sqlite3')*/
+const mongoose = require('mongoose');
 
 const app = express()
 const port = process.env.PORT || 3000
+const Product = require ('./models/product')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -38,9 +40,22 @@ app.get('/api/product/:productId',(req,res)=>{
 })
 
 app.post('/api/product',(req,res)=>{
-    console.log(req.body)
+    /*console.log(req.body)
     res.status(200).send({message: 'El producto se ha recibido correctamente'})
-    //res.status(404).send({message: 'producto no recibido'})
+    res.status(404).send({message: 'producto no recibido'})*/
+    console.log ('POST /api/product')
+    console.log (req.body)
+    let product = new Product()
+    product.name = req.body.name
+    product.picture = req.body.picture
+    product.price = req.body.price
+    product.category = req.body.category
+    product.description = req.body.description
+
+    product.save((err,productStored)=>{
+        if (err) res.status(500).send({message: `Error al salvar en la base de datos ${err}`})
+        res.status(200).send({product: productStored})
+    })
 })
 
 app.put('/api/product/:productId',(req,res)=>{
@@ -52,7 +67,14 @@ app.delete('/api/product/:productId',(req,res)=>{
 })
 
 
+mongoose.connect('mongodb://localhost:27017/shop',{ useNewUrlParser: true, useUnifiedTopology: true , },(err,res)=>{
 
-app.listen(port,()=>{
-    console.log(`API REST corriendo en  http://localhost:${port}`)
+    if(err) {
+        return console.log(`Error al conectar a la base de datos: ${err}`)
+    } 
+    console.log('Conexion a labase de dato establecida.')
+    app.listen(port,()=>{
+        console.log(`API REST corriendo en  http://localhost:${port}`)
+    })
+
 })
