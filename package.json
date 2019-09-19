@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/josanescod/node-todotool#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.7.1",
     "nodemon": "^1.19.2"
