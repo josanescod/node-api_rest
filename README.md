@@ -1,3 +1,3 @@
 # node-todotool
 
-solo un repositorio para practicar con node express y mongo
+just a repository to practice with node express and mongo
