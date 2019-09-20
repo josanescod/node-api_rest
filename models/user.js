@@ -1,4 +1,5 @@
 'use strict'
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 //libreria para hashear encriptar contraseñas
 const bcryp = require ('bcrypt-nodejs')
@@ -17,7 +18,7 @@ const UserSchema = new Schema ({
 
 })
 
-UserSchema.pre('save',(next)=>{
+UserSchema.pre('save',function(next){
 
     let user = this 
     if (!user.isModified('password')) return next()

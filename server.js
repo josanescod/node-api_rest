@@ -8,7 +8,11 @@ const config = require ('./config')
 
 
 
-mongoose.connect(config.db, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, (err, res) => {
+mongoose.connect(config.db, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true}, (err, res) => {
 
     if (err) {
         return console.log(`Error al conectar a la base de datos: ${err}`)
